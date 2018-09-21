@@ -20,7 +20,7 @@ First, we create a data frame comprised of:
 
 *   A (length-10) factor vector
 
-```{r}
+```{r data_frame}
 set.seed(1)
 
 Random_Sample = runif(10, min = 0, max = 5)
@@ -41,12 +41,36 @@ problem1_df = tibble(
 
 Now we will try to take the mean of each variable in my dataframe.
 
-```{r}
+```{r mean}
 mean (Random_Sample)
 mean (vec_logical)
 mean (vec_char)
 mean (vec_factor)
 ```
 We can see that only the mean of our random sample and the mean of logical vector work, however the mean of character vector and the mean of factor vector don't work. This is because the `mean` function can only be applied to numeric values.
+
+
+Then we apply the `as.numeric` function to the logical, character, and factor variables.
+
+```{r LANG = "en", include = FALSE}
+  Sys.setenv (LANG = "en")
+```
+
+```{r as.numeric, results = 'hide'}
+as.numeric (vec_logical)
+as.numeric (vec_char)
+as.numeric (vec_factor)
+```
+
+We notice that the `as.numeric` function can be applied to the logical and factor variables, but it cannot be applied to the character variables.
+
+Then we try to convert the character variable from character to factor to numeric and similarly, convert the factor variable from factor to character to numeric. 
+
+```{r convert variable}
+as.numeric (as.factor (vec_char))
+as.numeric (as.character (vec_factor))
+```
+
+From the results we can see that the character variable can be converted from character to factor to numeric, but the factor variable cannot be converted from factor to character to numeric. 
 
 
