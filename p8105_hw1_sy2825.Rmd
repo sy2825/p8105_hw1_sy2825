@@ -10,7 +10,7 @@ library(tidyverse)
 ```
 # Problem 1
 
-First, we Create a data frame comprised of:
+First, we create a data frame comprised of:
 
 *   A random sample of size 10 from a uniform[0, 5] distribution
 
@@ -23,10 +23,30 @@ First, we Create a data frame comprised of:
 ```{r}
 set.seed(1)
 
+Random_Sample = runif(10, min = 0, max = 5)
+
+vec_logical = Random_Sample > 2
+
+vec_char = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
+
+vec_factor = factor(c("male", "male", "male", "male", "male", "female", "female", "female", "female", "female"))
+
+
 problem1_df = tibble(
-  Random_Sample = runif(10, min = 0, max = 5),
-  vec_logical = Random_Sample > 2,
-  vec_char = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"),
-  vec_factor = factor(c("male", "male", "male", "male", "male", "female", "female", "female", "female", "female"))
-)
+  Random_Sample,
+  vec_logical,
+  vec_char,
+  vec_factor)
 ```
+
+Now we will try to take the mean of each variable in my dataframe.
+
+```{r}
+mean (Random_Sample)
+mean (vec_logical)
+mean (vec_char)
+mean (vec_factor)
+```
+We can see that only the mean of our random sample and the mean of logical vector work, however the mean of character vector and the mean of factor vector don't work. This is because the `mean` function can only be applied to numeric values.
+
+
