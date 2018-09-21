@@ -42,13 +42,13 @@ problem1_df = tibble(
 Now we will try to take the mean of each variable in my dataframe.
 
 ```{r mean}
-mean (Random_Sample)
+mean(Random_Sample)
 
-mean (vec_logical)
+mean(vec_logical)
 
-mean (vec_char)
+mean(vec_char)
 
-mean (vec_factor)
+mean(vec_factor)
 ```
 We can see that only the mean of our random sample and the mean of logical vector work, however the mean of character vector and the mean of factor vector don't work. This is because the `mean` function can only be applied to numeric values.
 
@@ -56,15 +56,15 @@ We can see that only the mean of our random sample and the mean of logical vecto
 Then we apply the `as.numeric` function to the logical, character, and factor variables.
 
 ```{r LANG = "en", include = FALSE}
-  Sys.setenv (LANG = "en")
+  Sys.setenv(LANG = "en")
 ```
 
 ```{r as.numeric, results = 'hide'}
-as.numeric (vec_logical)
+as.numeric(vec_logical)
 
-as.numeric (vec_char)
+as.numeric(vec_char)
 
-as.numeric (vec_factor)
+as.numeric(vec_factor)
 ```
 
 We notice that the `as.numeric` function can be applied to the logical and factor variables, but it cannot be applied to the character variables.
@@ -72,9 +72,9 @@ We notice that the `as.numeric` function can be applied to the logical and facto
 Then we try to convert the character variable from character to factor to numeric and similarly, convert the factor variable from factor to character to numeric. 
 
 ```{r convert variable}
-as.numeric (as.factor (vec_char))
+as.numeric(as.factor(vec_char))
 
-as.numeric (as.character (vec_factor))
+as.numeric(as.character(vec_factor))
 ```
 
 From the results we can see that the character variable can be converted from character to factor to numeric, but the factor variable cannot be converted from factor to character to numeric. 
@@ -95,17 +95,17 @@ First we will create a data frame comprised of:
 
 ```{r data_frame_2}
 
-set.seed (2)
+set.seed(2)
 
-x = rnorm (1000, mean = 0, sd = 1)
+x = rnorm(1000, mean = 0, sd = 1)
 
-y = rnorm (1000, mean = 0, sd = 1)
+y = rnorm(1000, mean = 0, sd = 1)
 
 vec_logical_p2 = x + y > 0
 
-vec_numeric_p2 = as.numeric (vec_logical_p2)
+vec_numeric_p2 = as.numeric(vec_logical_p2)
 
-vec_factor_p2 = as.factor (vec_logical_p2)
+vec_factor_p2 = as.factor(vec_logical_p2)
 
 problem2_df = tibble(
   x,
@@ -114,15 +114,33 @@ problem2_df = tibble(
   vec_numeric_p2,
   vec_factor_p2)
 ```
-*  The size of the dataset is `r dim (problem2_df)`.
+*  The size of the dataset is `r dim(problem2_df)`.
 
-*  The mean of `x` is `r mean (x)` and the median of `x` is `r median (x)`.
+*  The mean of `x` is `r mean(x)` and the median of `x` is `r median (x)`.
 
-*  The proportion of cases for which the logical is `TRUE` is `r sum (vec_logical_p2) / length (vec_logical_p2)`.
-
-
+*  The proportion of cases for which the logical is `TRUE` is `r sum(vec_logical_p2) / length (vec_logical_p2)`.
 
 
+Making a scatterplot of `y` vs `x`; color points using the logical variable:
 
+```{r scatterplot_logical}
 
+ggplot(problem2_df, aes(x = x, y = y, color = vec_logical_p2)) + geom_point()
 
+ggsave("scatter_plot_problem2.pdf", height = 4, width = 6)
+```
+
+Making a scatterplot of `y` vs `x`; color points using the numeric variable:
+
+```{r scatterplot_numeric}
+
+ggplot(problem2_df, aes(x = x, y = y, color = vec_numeric_p2)) + geom_point()
+```
+
+Making a scatterplot of `y` vs `x`; color points using the factor variable:
+
+```{r scatterplot_factor}
+
+ggplot(problem2_df, aes(x = x, y = y, color = vec_factor_p2)) + geom_point()
+```
+The first and third plots have the same color scale but they are different from the second one.
