@@ -20,7 +20,7 @@ First, we create a data frame comprised of:
 
 *   A (length-10) factor vector
 
-```{r data_frame}
+```{r data_frame_1}
 set.seed(1)
 
 Random_Sample = runif(10, min = 0, max = 5)
@@ -43,8 +43,11 @@ Now we will try to take the mean of each variable in my dataframe.
 
 ```{r mean}
 mean (Random_Sample)
+
 mean (vec_logical)
+
 mean (vec_char)
+
 mean (vec_factor)
 ```
 We can see that only the mean of our random sample and the mean of logical vector work, however the mean of character vector and the mean of factor vector don't work. This is because the `mean` function can only be applied to numeric values.
@@ -58,7 +61,9 @@ Then we apply the `as.numeric` function to the logical, character, and factor va
 
 ```{r as.numeric, results = 'hide'}
 as.numeric (vec_logical)
+
 as.numeric (vec_char)
+
 as.numeric (vec_factor)
 ```
 
@@ -68,9 +73,46 @@ Then we try to convert the character variable from character to factor to numeri
 
 ```{r convert variable}
 as.numeric (as.factor (vec_char))
+
 as.numeric (as.character (vec_factor))
 ```
 
 From the results we can see that the character variable can be converted from character to factor to numeric, but the factor variable cannot be converted from factor to character to numeric. 
+
+# Problem 2
+
+First we will create a data frame comprised of:
+
+*  `x`: a random sample of size 1000 from a standard Normal distribution
+
+*  `y`: a random sample of size 1000 from a standard Normal distribution
+
+*  A logical vector indicating whether the x + y > 0
+
+*  A numeric vector created by coercing the above logical vector
+
+*  A factor vector created by coercing the above logical vector
+
+```{r data_frame_2}
+
+set.seed (1)
+
+x = rnorm (1000, sd = 1)
+
+y = rnorm (1000, sd = 1)
+
+vec_logical_p2 = x + y > 2
+
+vec_numeric_p2 = as.numeric (vec_logical_p2)
+
+vec_factor_p2 = as.factor (vec_logical_p2)
+
+problem2_df = tibble(
+  x,
+  y,
+  vec_logical_p2,
+  vec_numeric_p2,
+  vec_factor_p2)
+```
 
 
