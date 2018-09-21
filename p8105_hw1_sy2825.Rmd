@@ -95,13 +95,13 @@ First we will create a data frame comprised of:
 
 ```{r data_frame_2}
 
-set.seed (1)
+set.seed (2)
 
-x = rnorm (1000, sd = 1)
+x = rnorm (1000, mean = 0, sd = 1)
 
-y = rnorm (1000, sd = 1)
+y = rnorm (1000, mean = 0, sd = 1)
 
-vec_logical_p2 = x + y > 2
+vec_logical_p2 = x + y > 0
 
 vec_numeric_p2 = as.numeric (vec_logical_p2)
 
@@ -114,5 +114,15 @@ problem2_df = tibble(
   vec_numeric_p2,
   vec_factor_p2)
 ```
+*  The size of the dataset is `r dim (problem2_df)`.
+
+*  The mean of `x` is `r mean (x)` and the median of `x` is `r median (x)`.
+
+*  The proportion of cases for which the logical is `TRUE` is `r sum (vec_logical_p2) / length (vec_logical_p2)`.
+
+
+
+
+
 
 
