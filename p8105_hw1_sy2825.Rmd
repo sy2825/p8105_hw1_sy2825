@@ -1,0 +1,10 @@
+---
+title: "P8105 Homework 1"
+output: github_document
+author: "Shuo Yan (sy2825)"
+date: 2018-09-20
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+```
